@@ -3,9 +3,11 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 from bson import ObjectId
 from datetime import datetime 
+import os
 
 app = Flask(__name__)
-cliente = MongoClient("mongodb://127.0.0.1:27017/", serverSelectionTimeoutMS=3000)
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb://127.0.0.1:27017/")
+cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=3000)
 base_datos = cliente["escuela_practica"]
 alumnos = base_datos["alumnos"]
 
